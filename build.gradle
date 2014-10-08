@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+defaultTasks 'clean', 'build'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+
+    testCompile 'org.testng:testng:6.8.8'
+}
+
+test {
+    useTestNG()
+}
