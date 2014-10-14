@@ -10,6 +10,13 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTestNg;
 import org.testng.annotations.Test;
 
+/**
+ * The only purpose of this test is to figure out how Jersey Test framework
+ * works.
+ * 
+ * @author robert.kuhar
+ *
+ */
 public class SimpleTest extends JerseyTestNg.ContainerPerClassTest {
 
     @Path( "hello" )
@@ -18,7 +25,7 @@ public class SimpleTest extends JerseyTestNg.ContainerPerClassTest {
         public String getHello() {
             return "Hello World!";
         }
-        
+
         @GET
         @Path( "jello" )
         public String getJello() {

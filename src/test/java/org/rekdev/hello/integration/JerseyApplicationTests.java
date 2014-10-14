@@ -11,6 +11,12 @@ import org.glassfish.jersey.test.JerseyTestNg;
 import org.rekdev.hello.service.JerseyApplication;
 import org.testng.annotations.Test;
 
+/**
+ * Jersey Tests to exercise the GreeterResource.
+ * 
+ * @author robert.kuhar
+ *
+ */
 public class JerseyApplicationTests extends JerseyTestNg.ContainerPerClassTest {
 
     @Override
@@ -28,7 +34,8 @@ public class JerseyApplicationTests extends JerseyTestNg.ContainerPerClassTest {
 
     @Test
     public void testGreeterRobertTextPlain() {
-        final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.TEXT_PLAIN ).get();
+        final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.TEXT_PLAIN )
+                .get();
         assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
         assertEquals( "Hello, Rob<e>rt", response.readEntity( String.class ) );
     }
@@ -38,6 +45,7 @@ public class JerseyApplicationTests extends JerseyTestNg.ContainerPerClassTest {
         final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.APPLICATION_JSON )
                 .get();
         assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
+        // TODO: String Compare is not adequate
         assertEquals( "{\"greeting\":\"Hello, Rob<e>rt\"}", response.readEntity( String.class ) );
     }
 
@@ -46,6 +54,7 @@ public class JerseyApplicationTests extends JerseyTestNg.ContainerPerClassTest {
         final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.APPLICATION_XML )
                 .get();
         assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
+        // TODO: String Compare is not adequate
         assertEquals(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><greeterResponse><greeting>Hello, Rob&lt;e&gt;rt</greeting></greeterResponse>",
                 response.readEntity( String.class ) );
