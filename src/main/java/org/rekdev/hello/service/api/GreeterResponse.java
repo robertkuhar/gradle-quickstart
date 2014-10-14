@@ -1,4 +1,4 @@
-package org.rekdev.hello.service;
+package org.rekdev.hello.service.api;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

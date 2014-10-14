@@ -17,10 +17,6 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>org.rekdev.hello.service.JerseyApplication</param-value>
         </init-param>
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>org.rekdev.hello.service</param-value>
-        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     

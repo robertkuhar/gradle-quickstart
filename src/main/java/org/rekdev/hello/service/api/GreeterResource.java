@@ -1,4 +1,4 @@
-package org.rekdev.hello.service;
+package org.rekdev.hello.service.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import org.rekdev.hello.Greeter;
 
 @Path( "greeter" )
-public class GreeterRequest {
+public class GreeterResource {
 
     @Path( "greet" )
     @GET
