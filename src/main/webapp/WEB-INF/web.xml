@@ -9,10 +9,25 @@
         <servlet-name>Greeter</servlet-name>
         <servlet-class>org.rekdev.hello.service.GreeterServlet</servlet-class>
     </servlet>
-
+    
+    <servlet>
+        <servlet-name>Greeter_Jersey</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>org.rekdev.hello.service.JerseyApplication</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>Greeter</servlet-name>
         <url-pattern>/greeter</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Greeter_Jersey</servlet-name>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
     
 </web-app>
