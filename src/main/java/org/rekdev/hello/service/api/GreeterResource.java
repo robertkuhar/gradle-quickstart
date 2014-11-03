@@ -8,29 +8,29 @@ import javax.ws.rs.core.MediaType;
 
 import org.rekdev.hello.Greeter;
 
-@Path( "greeter" )
+@Path("greeter")
 public class GreeterResource {
 
-    @Path( "greet" )
-    @GET
-    @Produces( MediaType.TEXT_PLAIN )
-    public String greetText( @QueryParam( "name" ) String name ) {
-        return doGreeting( name ).greeting;
+  @Path("greet")
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String greetText(@QueryParam("name") String name) {
+    return doGreeting(name).greeting;
+  }
+
+  @Path("greet")
+  @GET
+  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+  public GreeterResponse greetJson(@QueryParam("name") String name) {
+    return doGreeting(name);
+  }
+
+  private GreeterResponse doGreeting(String name) {
+    if (name == null) {
+      name = "unknown";
     }
-    
-    @Path( "greet" )
-    @GET
-    @Produces( { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-    public GreeterResponse greetJson( @QueryParam( "name" ) String name ) {
-        return doGreeting( name );
-    }
-    
-    private GreeterResponse doGreeting( String name ) {
-        if ( name == null ) {
-            name = "unknown";
-        }
-        Greeter greeter = new Greeter();
-        GreeterResponse greeterResponse = new GreeterResponse( greeter.greet( name ) );
-        return greeterResponse;
-    }
+    Greeter greeter = new Greeter();
+    GreeterResponse greeterResponse = new GreeterResponse(greeter.greet(name));
+    return greeterResponse;
+  }
 }

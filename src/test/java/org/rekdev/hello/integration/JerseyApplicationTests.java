@@ -19,45 +19,47 @@ import org.testng.annotations.Test;
  */
 public class JerseyApplicationTests extends JerseyTestNg.ContainerPerClassTest {
 
-    @Override
-    protected Application configure() {
-        Application app = new JerseyApplication();
-        return app;
-    }
+  @Override
+  protected Application configure() {
+    Application app = new JerseyApplication();
+    return app;
+  }
 
-    @Test
-    public void testGreeterUnknownTextPlain() {
-        final Response response = target( "greeter/greet" ).request( MediaType.TEXT_PLAIN ).get();
-        assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
-        assertEquals( "Hello, unknown", response.readEntity( String.class ) );
-    }
+  @Test
+  public void testGreeterUnknownTextPlain() {
+    final Response response = target("greeter/greet").request(MediaType.TEXT_PLAIN).get();
+    assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    assertEquals("Hello, unknown", response.readEntity(String.class));
+  }
 
-    @Test
-    public void testGreeterRobertTextPlain() {
-        final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.TEXT_PLAIN )
-                .get();
-        assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
-        assertEquals( "Hello, Rob<e>rt", response.readEntity( String.class ) );
-    }
+  @Test
+  public void testGreeterRobertTextPlain() {
+    final Response response =
+        target("greeter/greet").queryParam("name", "Rob<e>rt").request(MediaType.TEXT_PLAIN).get();
+    assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    assertEquals("Hello, Rob<e>rt", response.readEntity(String.class));
+  }
 
-    @Test
-    public void testGreeterRobertApplicationJSON() {
-        final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.APPLICATION_JSON )
-                .get();
-        assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
-        // TODO: String Compare is not adequate
-        assertEquals( "{\"greeting\":\"Hello, Rob<e>rt\"}", response.readEntity( String.class ) );
-    }
+  @Test
+  public void testGreeterRobertApplicationJSON() {
+    final Response response =
+        target("greeter/greet").queryParam("name", "Rob<e>rt").request(MediaType.APPLICATION_JSON)
+            .get();
+    assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    // TODO: String Compare is not adequate
+    assertEquals("{\"greeting\":\"Hello, Rob<e>rt\"}", response.readEntity(String.class));
+  }
 
-    @Test
-    public void testGreeterRobertApplicationXML() {
-        final Response response = target( "greeter/greet" ).queryParam( "name", "Rob<e>rt" ).request( MediaType.APPLICATION_XML )
-                .get();
-        assertEquals( HttpServletResponse.SC_OK, response.getStatus() );
-        // TODO: String Compare is not adequate
-        assertEquals(
-                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><greeterResponse><greeting>Hello, Rob&lt;e&gt;rt</greeting></greeterResponse>",
-                response.readEntity( String.class ) );
-    }
+  @Test
+  public void testGreeterRobertApplicationXML() {
+    final Response response =
+        target("greeter/greet").queryParam("name", "Rob<e>rt").request(MediaType.APPLICATION_XML)
+            .get();
+    assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    // TODO: String Compare is not adequate
+    assertEquals(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><greeterResponse><greeting>Hello, Rob&lt;e&gt;rt</greeting></greeterResponse>",
+        response.readEntity(String.class));
+  }
 
 }

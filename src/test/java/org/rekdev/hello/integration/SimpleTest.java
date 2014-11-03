@@ -11,43 +11,42 @@ import org.glassfish.jersey.test.JerseyTestNg;
 import org.testng.annotations.Test;
 
 /**
- * The only purpose of this test is to figure out how Jersey Test framework
- * works.
+ * The only purpose of this test is to figure out how Jersey Test framework works.
  * 
  * @author robert.kuhar
  *
  */
 public class SimpleTest extends JerseyTestNg.ContainerPerClassTest {
 
-    @Path( "hello" )
-    public static class HelloResource {
-        @GET
-        public String getHello() {
-            return "Hello World!";
-        }
-
-        @GET
-        @Path( "jello" )
-        public String getJello() {
-            return "Jello World!";
-        }
+  @Path("hello")
+  public static class HelloResource {
+    @GET
+    public String getHello() {
+      return "Hello World!";
     }
 
-    @Override
-    protected Application configure() {
-        return new ResourceConfig( HelloResource.class );
+    @GET
+    @Path("jello")
+    public String getJello() {
+      return "Jello World!";
     }
+  }
 
-    @Test
-    public void test() {
-        final String hello = target( "hello" ).request().get( String.class );
-        assertEquals( "Hello World!", hello );
-    }
+  @Override
+  protected Application configure() {
+    return new ResourceConfig(HelloResource.class);
+  }
 
-    @Test
-    public void test2() {
-        final String jello = target( "hello/jello" ).request().get( String.class );
-        assertEquals( "Jello World!", jello );
-    }
+  @Test
+  public void test() {
+    final String hello = target("hello").request().get(String.class);
+    assertEquals("Hello World!", hello);
+  }
+
+  @Test
+  public void test2() {
+    final String jello = target("hello/jello").request().get(String.class);
+    assertEquals("Jello World!", jello);
+  }
 
 }

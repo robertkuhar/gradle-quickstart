@@ -2,8 +2,7 @@ gradle-quickstart
 =================
 
 The purpose of gradle-quickstart is to explore how Gradle can be used to build and package a Java webapp
-leveraging "the usual suspects" of Java, Jersey, Logback, and Jackson.  This really is little more than a 
-proof-of-concept.
+leveraging "the usual suspects" of Java, Jersey, Logback, and Jackson.
 
 Build with ./gradlew (Unix) or gradlew.bat (Windows).
 

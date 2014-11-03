@@ -14,21 +14,22 @@ import com.google.common.html.HtmlEscapers;
 
 public class GreeterServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-        String name = req.getParameter( "name" );
-        if ( name == null ) {
-            name = "unknown";
-        }
-        Greeter greeter = new Greeter();
-        resp.setContentType( "text/html" );
-        PrintWriter out = resp.getWriter();
-        out.println( "<head><title>Greeter</title></head>" );
-        out.println( "<body>" );
-        out.println( greeter.greet( HtmlEscapers.htmlEscaper().escape( name ) ) );
-        out.println( "</body>" );
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+      IOException {
+    String name = req.getParameter("name");
+    if (name == null) {
+      name = "unknown";
     }
+    Greeter greeter = new Greeter();
+    resp.setContentType("text/html");
+    PrintWriter out = resp.getWriter();
+    out.println("<head><title>Greeter</title></head>");
+    out.println("<body>");
+    out.println(greeter.greet(HtmlEscapers.htmlEscaper().escape(name)));
+    out.println("</body>");
+  }
 
 }
