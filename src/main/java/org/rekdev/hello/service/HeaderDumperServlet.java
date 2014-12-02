@@ -80,10 +80,7 @@ public class HeaderDumperServlet extends HttpServlet {
   private void doIt(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
 
-    resp.setContentType("application/json");
-    PrintWriter out = resp.getWriter();
     List<HeaderRecord> headerRecords = new ArrayList<HeaderRecord>();
-
     Enumeration<String> headers = req.getHeaderNames();
     while (headers.hasMoreElements()) {
       String headerName = headers.nextElement();
@@ -93,9 +90,10 @@ public class HeaderDumperServlet extends HttpServlet {
       headerRecords.add(new HeaderRecord(headerName, headerValue, headerValues));
     }
 
+    resp.setContentType("application/json");
     ObjectMapper mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
-    mapper.writeValue(out, new HeaderRecords(headerRecords));
+    mapper.writeValue(resp.getWriter(), new HeaderRecords(headerRecords));
   }
 
 }
