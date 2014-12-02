@@ -8,6 +8,13 @@
     <servlet>
         <servlet-name>Greeter</servlet-name>
         <servlet-class>org.rekdev.hello.service.GreeterServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>HeaderDumperServlet</servlet-name>
+        <servlet-class>org.rekdev.hello.service.HeaderDumperServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     
     <servlet>
@@ -23,6 +30,11 @@
     <servlet-mapping>
         <servlet-name>Greeter</servlet-name>
         <url-pattern>/greeter</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>HeaderDumperServlet</servlet-name>
+        <url-pattern>/headers</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

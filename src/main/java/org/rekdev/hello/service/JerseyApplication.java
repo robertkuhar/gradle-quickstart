@@ -12,5 +12,6 @@ public class JerseyApplication extends ResourceConfig {
     log.trace("JerseyApplication()");
     register(JacksonFeature.class);
     packages("org.rekdev.hello.service.api");
+    log.info("JerseyApplication initialized");
   }
 }
