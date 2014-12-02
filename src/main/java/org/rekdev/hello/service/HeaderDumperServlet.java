@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -87,12 +88,7 @@ public class HeaderDumperServlet extends HttpServlet {
     while (headers.hasMoreElements()) {
       String headerName = headers.nextElement();
       String headerValue = req.getHeader(headerName);
-      // List<String> headerValues = Collections.list(req.getHeaders(headerName));
-      List<String> headerValues = new ArrayList<String>();
-      Enumeration<String> values = req.getHeaders(headerName);
-      while (values.hasMoreElements()) {
-        headerValues.add(values.nextElement());
-      }
+      List<String> headerValues = Collections.list(req.getHeaders(headerName));
       log.debug("headerName: {} headerValues.size: {}", headerName, headerValues.size());
       headerRecords.add(new HeaderRecord(headerName, headerValue, headerValues));
     }
