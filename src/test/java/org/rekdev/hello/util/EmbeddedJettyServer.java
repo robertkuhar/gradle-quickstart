@@ -1,4 +1,4 @@
-package org.rekdev.hello.integration;
+package org.rekdev.hello.util;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -13,6 +13,7 @@ public class EmbeddedJettyServer {
 
   public synchronized void startIfRequired() throws Exception {
     if (server == null) {
+      log.info("starting");
       server = new Server(8080);
       WebAppContext context = new WebAppContext();
       context.setDescriptor("src/main/webapp/WEB-INF/web.xml");
@@ -20,8 +21,8 @@ public class EmbeddedJettyServer {
       context.setContextPath("/");
       server.setHandler(context);
       server.start();
-      log.info("started");
     }
+    log.info("started");
   }
 
   public synchronized Server getServer() {
@@ -30,18 +31,21 @@ public class EmbeddedJettyServer {
 
   public synchronized void stop() throws Exception {
     if (server != null) {
+      log.info("stopping");
       server.stop();
       server.join();
       server.destroy();
       server = null;
-      log.info("stopped");
     }
+    log.info("stopped");
   }
 
   public static void main(String[] args) {
     try {
       EmbeddedJettyServer.INSTANCE.startIfRequired();
-      EmbeddedJettyServer.INSTANCE.getServer().join();
+      // Let it run for 1 minute...
+      Thread.sleep(60000);
+      EmbeddedJettyServer.INSTANCE.stop();
     } catch (Exception ex) {
       ex.printStackTrace();
     }
