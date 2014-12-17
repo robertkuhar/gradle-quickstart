@@ -26,7 +26,7 @@ import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
 public class GreeterJerseyTests extends ContainerTestsBase {
-  @Test
+  @Test(groups = { "integration" })
   public void testGreeterUnknownTextPlain() throws ClientProtocolException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
     HttpGet httpget = new HttpGet("http://localhost:8080/api/greeter/greet");
@@ -47,7 +47,7 @@ public class GreeterJerseyTests extends ContainerTestsBase {
     response.close();
   }
 
-  @Test
+  @Test(groups = { "integration" })
   public void testGreeterRobertTextPlain() throws ClientProtocolException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
     HttpGet httpget = new HttpGet("http://localhost:8080/api/greeter/greet?name=Robert");
@@ -68,7 +68,7 @@ public class GreeterJerseyTests extends ContainerTestsBase {
     response.close();
   }
 
-  @Test
+  @Test(groups = { "integration" })
   public void testGreeterRobertApplicationJSON() throws ClientProtocolException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
     HttpGet httpget = new HttpGet("http://localhost:8080/api/greeter/greet?name=Robert");
@@ -93,7 +93,7 @@ public class GreeterJerseyTests extends ContainerTestsBase {
     response.close();
   }
 
-  @Test
+  @Test(groups = { "integration" })
   public void testGreeterRobertApplicationXML() throws ClientProtocolException, IOException,
       JAXBException {
     CloseableHttpClient httpclient = HttpClients.createDefault();

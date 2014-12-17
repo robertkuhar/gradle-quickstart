@@ -36,5 +36,11 @@ dependencies {
 }
 
 test {
-  useTestNG()
+    useTestNG()
+}
+
+task integrationTest(type: Test, dependsOn: 'test') {
+    useTestNG() {
+      includeGroups 'integration'
+    }
 }

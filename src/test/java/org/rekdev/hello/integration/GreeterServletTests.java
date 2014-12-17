@@ -21,7 +21,7 @@ import static org.testng.AssertJUnit.fail;
 
 public class GreeterServletTests extends ContainerTestsBase {
 
-  @Test
+  @Test(groups = { "integration" })
   public void happyPathGreeter() throws ClientProtocolException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
     HttpGet httpget = new HttpGet("http://localhost:8080/greeter");
@@ -38,7 +38,7 @@ public class GreeterServletTests extends ContainerTestsBase {
     }
   }
 
-  @Test
+  @Test(groups = { "integration" })
   public void greeterPlusParam() throws ClientProtocolException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
     HttpGet httpget = new HttpGet("http://localhost:8080/greeter?name=Robert");
