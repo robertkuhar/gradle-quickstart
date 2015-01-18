@@ -7,7 +7,6 @@ apply plugin: 'jetty'
 version = '1.0'
 
 ext.jetty = [version: '9.2.5.v20141112']
-// ext.jetty = [version: '8.1.2.v20120308']
 ext.jersey = [version: '2.13']
 
 defaultTasks 'clean', 'build'
@@ -42,5 +41,11 @@ test {
 task integrationTest(type: Test, dependsOn: 'test') {
     useTestNG() {
       includeGroups 'integration'
+    }
+}
+
+war {
+    manifest {
+        attributes("Implementation-Title": "gradle-quickstart", "Implementation-Version": version)
     }
 }
