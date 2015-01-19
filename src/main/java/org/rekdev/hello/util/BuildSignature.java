@@ -21,6 +21,7 @@ public class BuildSignature {
   public static final String BUILDUSER = "buildsig.user";
   public static final String BUILDSYSTEM = "buildsig.system";
   public static final String BUILDTAG = "buildsig.tag";
+  // TODO: You need some aspect of Git commit here
 
   public static final BuildSignature instance = new BuildSignature();
   private static Properties buildSignatureProperties;
