@@ -6,15 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GreeterResponse {
   public String greeting;
 
-  public GreeterResponse() {}
-
-  public GreeterResponse(String greeting) {
-    this();
-    this.greeting = greeting;
+  public GreeterResponse() {
   }
-
-  public String getGreeting() {
-    return this.greeting;
+  
+  public GreeterResponse(String greeting) {
+    this.greeting = greeting;
   }
 
 }

@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -5,6 +7,11 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 version = '1.0'
+
+ext.env = new HashMap(System.getenv())
+ext.env.putAll(System.properties)
+ext.buildTag = System.env.BUILD_TAG ?: "dev"
+ext.buildNum = System.env.BUILD_NUMBER ?: "dev"
 
 ext.jetty = [version: '9.2.5.v20141112']
 ext.jersey = [version: '2.13']
@@ -42,6 +49,20 @@ task integrationTest(type: Test, dependsOn: 'test') {
     useTestNG() {
       includeGroups 'integration'
     }
+}
+
+processResources {
+    def whoami = System.getProperty( 'user.name' );
+    def hostname = InetAddress.getLocalHost().getHostName()
+    def buildTimestamp = new Date().format('yyyy-MM-dd HH:mm:ss z')
+    
+    filter ReplaceTokens, tokens: [
+                "buildsig.version" : project.version,
+                "buildsig.timestamp" : buildTimestamp,
+                "buildsig.user" : whoami,
+                "buildsig.system" : hostname,
+                "buildsig.tag" : buildTag
+            ]
 }
 
 war {
