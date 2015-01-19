@@ -8,12 +8,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StatusResponse {
   public String version;
   public String buildSignature;
-  public Properties properties;
+  public Properties properites;
 
+  public StatusResponse() {
+  }
+  
   public StatusResponse(String version, String buildSignature, Properties properties) {
     this.version = version;
     this.buildSignature = buildSignature;
-    this.properties = properties;
+    this.properites = properties;
   }
 
 }
